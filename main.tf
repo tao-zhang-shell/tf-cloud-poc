@@ -1,6 +1,16 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 ## Terraform configuration
 
 terraform {
+  cloud {
+    organization = "example-org-271136"
+    workspaces {
+      name = "learn-terraform-cloud-migrate"
+    }
+  }
+
   required_providers {
     random = {
       source  = "hashicorp/random"
@@ -12,7 +22,8 @@ terraform {
 
 variable "name_length" {
   description = "The number of words in the pet name"
-  default     = "3"
+  sensitive   = true
+  default     = "2"
 }
 
 resource "random_pet" "pet_name" {
